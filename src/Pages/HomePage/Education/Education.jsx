@@ -1,61 +1,116 @@
-import React from 'react';
+import { motion } from 'framer-motion';
 import { FaGraduationCap, FaUniversity, FaCalendarAlt, FaBookOpen } from 'react-icons/fa';
+import SectionHeading from '../../../components/ui/SectionHeading';
+import Reveal from '../../../components/ui/Reveal';
+import Parallax from '../../../components/ui/Parallax';
 
-const educationData = [
+const EDUCATION = [
   {
-    degree: "Bachelor of Science (BSc) in Computer Science & Engineering",
-    institution: "Daffodil International University",
-    year: "2022 – Present",
-    details: "Studying core subjects like Data Structures, Algorithms, Artificial Intelligence, Machine Learning, and Web Development. Actively participating in coding contests and tech workshops.",
+    degree: 'B.Sc. in Computer Science & Engineering',
+    institution: 'Daffodil International University',
+    year: '2022 — 2026',
+    status: 'CGPA 3.70 / 4.00',
+    details:
+      'Core coursework in data structures, algorithms, artificial intelligence, machine learning and web development — alongside coding contests and tech workshops.',
   },
   {
-    degree: "Higher Secondary Certificate (HSC)",
-    institution: "Govt. Dohar Nawabganj College",
-    year: "2019 – 2021",
-    details: "Achieved a commendable GPA of 4.17 out of 5.0 under Dhaka Board. Focused on a strong foundation in Physics, Chemistry, and Mathematics.",
+    degree: 'Higher Secondary Certificate (HSC)',
+    institution: 'Govt. Dohar Nawabganj College',
+    year: '2019 — 2021',
+    status: 'GPA 4.17 / 5.00',
+    details:
+      'Science stream under the Dhaka Board, building a strong foundation in physics, chemistry and mathematics.',
   },
   {
-    degree: "Secondary School Certificate (SSC)",
-    institution: "Nawabganj Pilot High School",
-    year: "2017 – 2019",
-    details: "Successfully completed the science-based curriculum, achieving a GPA of 4.17 out of 5.0 under Dhaka Board. Developed foundational analytical skills.",
+    degree: 'Secondary School Certificate (SSC)',
+    institution: 'Nawabganj Pilot High School',
+    year: '2017 — 2019',
+    status: 'GPA 4.17 / 5.00',
+    details:
+      'Completed the science curriculum with a focus on analytical thinking and problem solving.',
   },
 ];
 
 const Education = () => {
   return (
-    <section id="education" className="bg-[#0f172a] text-white py-20 px-4 sm:px-8 lg:px-16">
-      <div className="max-w-6xl mx-auto">
-        {/* Section Title - Prominent and Visually Engaging */}
-        <h2 className="text-2xl md:text-4xl font-extrabold text-center  mb-16 relative overflow-hidden">
-          <span className="relative block animate-fade-in-down-title">My Academic Journey</span>
-        </h2>
+    <section id="education" className="relative py-24 sm:py-28">
+      <Parallax
+        aria-hidden="true"
+        from={40}
+        to={-40}
+        className="pointer-events-none absolute right-0 top-1/3 h-72 w-72"
+      >
+        <div className="h-full w-full rounded-full bg-accent-2/[0.06] blur-[120px]" />
+      </Parallax>
 
-        {/* Education Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {educationData.map((edu, index) => (
-            <div
-              key={index}
-              className="bg-[#1e293b] rounded-xl p-8 shadow-xl border border-transparent hover:border-teal-400 transition-all duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-[1.02] relative group overflow-hidden"
-              style={{ animationDelay: `${index * 0.15}s` }} // Staggered entry
-            >
-              {/* Decorative Corner Element */}
-              <div className="absolute top-0 right-0 h-16 w-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-bl-xl opacity-70 group-hover:opacity-100 transition-opacity duration-300"></div>
+      <div className="mx-auto w-full max-w-4xl px-6 sm:px-8">
+        <SectionHeading
+          eyebrow="Education"
+          title={
+            <>
+              The path <span className="text-gradient">so far.</span>
+            </>
+          }
+          description="A steady progression from fundamentals to full-stack product engineering."
+        />
 
-              <h3 className="text-2xl font-bold text-teal-400 mb-3 flex items-center gap-3">
-                <FaGraduationCap className="text-3xl text-cyan-400" /> {edu.degree}
-              </h3>
-              <p className="text-lg text-gray-200 mb-2 flex items-center gap-2">
-                <FaUniversity className="text-gray-400" /> {edu.institution}
-              </p>
-              <p className="text-sm text-gray-400 italic mb-4 flex items-center gap-2">
-                <FaCalendarAlt className="text-gray-500" /> {edu.year}
-              </p>
-              <p className="text-gray-300 leading-relaxed flex items-start gap-2">
-                <FaBookOpen className="text-gray-500 mt-1" /> {edu.details}
-              </p>
-            </div>
-          ))}
+        <div className="relative mt-14">
+          {/* animated rail */}
+          <motion.span
+            aria-hidden="true"
+            className="absolute bottom-2 left-4 top-2 w-px origin-top bg-gradient-to-b from-accent via-accent-2/60 to-transparent sm:left-5"
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+          />
+
+          <ol className="space-y-5">
+            {EDUCATION.map((edu, index) => (
+              <li key={edu.degree} className="relative pl-12 sm:pl-16">
+                <Reveal delay={0.08 * index} y={20}>
+                  <span className="absolute left-4 top-7 z-10 grid h-9 w-9 -translate-x-1/2 place-items-center rounded-full border border-accent/25 bg-elevated text-accent shadow-[0_0_0_4px_var(--bg)] sm:left-5">
+                    <FaGraduationCap className="text-sm" />
+                  </span>
+
+                  <article className="group relative overflow-hidden rounded-2xl border border-hairline bg-surface p-6 transition-colors duration-500 hover:border-accent/25 hover:bg-surface-hover sm:p-7">
+                    <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-accent/10 blur-[50px] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                      <div>
+                        <div className="flex items-center gap-2 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-subtle">
+                          <FaCalendarAlt className="text-accent/70" />
+                          {edu.year}
+                        </div>
+                        <h3 className="mt-2 font-display text-lg font-semibold leading-snug text-strong">
+                          {edu.degree}
+                        </h3>
+                        <p className="mt-1.5 flex items-center gap-2 text-[0.82rem] text-muted">
+                          <FaUniversity className="text-subtle" />
+                          {edu.institution}
+                        </p>
+                      </div>
+
+                      <span
+                        className={`rounded-full border px-3 py-1 text-[0.62rem] font-medium ${
+                          index === 0
+                            ? 'border-accent/25 bg-accent/10 text-accent-soft'
+                            : 'border-hairline bg-surface text-muted'
+                        }`}
+                      >
+                        {edu.status}
+                      </span>
+                    </div>
+
+                    <p className="mt-4 flex items-start gap-2.5 border-t border-hairline pt-4 text-[0.8rem] leading-relaxed text-muted">
+                      <FaBookOpen className="mt-1 shrink-0 text-subtle" />
+                      {edu.details}
+                    </p>
+                  </article>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>

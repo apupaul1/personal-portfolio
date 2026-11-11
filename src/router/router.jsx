@@ -3,6 +3,7 @@ import RootLayout from "../layouts/RootLayout";
 import HomePage from "../Pages/HomePage/Home/HomePage";
 import ProjectDetails from "../Pages/HomePage/ProjectSection/ProjectDetails";
 import Contact from "../Pages/HomePage/Contact/Contact";
+import Resume from "../Pages/Resume/Resume";
 
 export const router = createBrowserRouter([
     {
@@ -14,13 +15,13 @@ export const router = createBrowserRouter([
                 Component: HomePage
             },
             {
-                path:'/project/:id',
-                Component: ProjectDetails
+                path: "resume",
+                Component: Resume
             },
-            {
-                path:'/contact',
-                Component: Contact
-            }
         ]
-    }
+    },
+    {
+        path: '/project/:id',
+        Component: ProjectDetails
+    },
 ])

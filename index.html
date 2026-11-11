@@ -1,10 +1,43 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
+    <meta name="theme-color" content="#05070d" />
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+          document.documentElement.style.backgroundColor = theme === 'light' ? '#f3f5fa' : '#05070d';
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', theme === 'light' ? '#f3f5fa' : '#05070d');
+        } catch (error) {
+          document.documentElement.dataset.theme = 'dark';
+          document.documentElement.style.backgroundColor = '#05070d';
+        }
+      })();
+    </script>
+    <meta
+      name="description"
+      content="Apu Paul — Full Stack Developer crafting fast, accessible and beautifully animated web products with React, Next.js, Node.js and MongoDB."
+    />
+    <meta property="og:title" content="Apu Paul — Full Stack Developer" />
+    <meta
+      property="og:description"
+      content="A premium portfolio showcasing full-stack products, interface craft and case studies."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Apu Paul — Full Stack Developer</title>
   </head>
   <body>
     <div id="root"></div>
